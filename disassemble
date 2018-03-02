@@ -1,0 +1,23 @@
+#! /usr/bin/env bash
+
+# Make sure the student provided his/her netid:
+if [ $# -eq 0 ]; then
+    echo "usage: defuse NETID"
+    exit 1
+fi
+
+# This is the students netid (NETID@umass.edu).
+NETID=$1
+
+# Check if the bomb exists
+if [ ! -f "bombs/students/$NETID" ]; then
+    echo "It does not appear that we have a binary bomb for you."
+    echo "Are you sure you provided the correct netid?"
+    echo "Your netid is the username you use to login to umass related web applications"
+    echo "  such as Spire and Moodle - netid@umass.edu."
+    exit 1
+fi
+
+# Run the bomb
+objdump -d ./bombs/students/$NETID
+
